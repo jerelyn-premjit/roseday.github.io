@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkAllPetalsFallen() {
         petalsFallen++;
-        if (petalsFallen === totalPetals - 1) {
+        if (petalsFallen === totalPetals) {
             // Create and display the image
             const img = document.createElement('img');
             img.src = 'postpetaldisplay.png';
