@@ -1,0 +1,208 @@
+/* style.css */
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    min-height: 100vh;
+    margin: 0;
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    overflow: hidden;
+}
+
+:root {
+  --background-image: url("rose.jpg");
+  --beige: #F5F5DC;
+  --deep-red: rgb(139, 0, 0);
+  --overlay-color: rgba(0, 0, 0, 0.3);
+}
+
+
+h1, h2, p {
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    color: var(--beige);
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    align-items: center; /* Vertical alignment */
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+#mainHeading {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+    font-size: 2.2em; /* Adjusted font size */
+    line-height: 1.3; /* Added line height */
+    margin: 0; /* Reset default margin */
+    padding: 0;
+}
+
+/* Updated Love Letter Styles */
+.love-letter {
+    grid-column: 2;
+    grid-row: 1;
+    width: 500px; /* Wider love letter */
+    padding: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: var(--overlay-color);
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.1em;
+    position: relative;
+}
+
+.love-letter h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.love-letter p {
+    font-size: 1em;  /* Smaller love letter text */
+    line-height: 1.4;
+}
+
+/* Signature Style */
+#signature {
+    text-align: right;
+    font-style: italic;
+    margin-top: 15px;
+    font-size: 1em;
+    color: var(--beige);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+.rose-container {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rose {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    perspective: 1000px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.rose:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* Updated Petal Text Size */
+.petal {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    border-radius: 40px 40px 10px 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, top 1s ease-in-out, left 1s ease-in-out, opacity 1s ease-in-out, rotate 1s ease-in-out;
+    user-select: none;
+    transform-origin: 50% 80%;
+    background-color: rgba(139, 0, 0, 0.7);
+    backface-visibility: hidden;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    color: var(--beige);
+    font-weight: bold;
+}
+
+.petal:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.petal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--deep-red);
+    border-radius: 40px 40px 10px 10px;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    color: var(--beige);
+    font-weight: bold;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.petal.flipped {
+    transform: rotateY(180deg);
+    transition: transform 0.5s ease-in-out;
+}
+
+.petal.falling {
+    top: 120%;
+    left: var(--random-left);
+    transform: translateX(-50%) rotate(720deg) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: top 2s ease-in-out, left 2s ease-in-out, opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+/* Rose rain styles */
+.falling-rose {
+    position: absolute;
+    font-size: 2em;
+    color: var(--beige);
+    top: -10%;
+    z-index: 1;
+    user-select: none;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(120vh);
+    }
+}
+
+
+/* Positioning the petals - Adjusted for a fuller rose */
+.petal:nth-child(1) { top: -10px; left: 50%; transform: translateX(-50%) rotate(5deg); }
+.petal:nth-child(2) { top: 5%; left: 80%; transform: rotate(15deg); }
+.petal:nth-child(3) { top: 30%; left: 90%; transform: rotate(25deg); }
+.petal:nth-child(4) { top: 55%; left: 80%; transform: rotate(35deg); }
+.petal:nth-child(5) { top: 75%; left: 50%; transform: translateX(-50%) rotate(45deg); }
+.petal:nth-child(6) { top: 55%; left: 20%; transform: rotate(-35deg); }
+.petal:nth-child(7) { top: 30%; left: 10%; transform: rotate(-25deg); }
+.petal:nth-child(8) { top: 5%; left: 20%; transform: rotate(-15deg); }
+.petal:nth-child(9) { top: 20%; left: 50%; transform: translateX(-50%) rotate(0deg); }
+.petal:nth-child(10) { top: 45%; left: 75%; transform: rotate(20deg); }
+.petal:nth-child(11) { top: 70%; left: 50%; transform: translateX(-50%) rotate(30deg); }
+.petal:nth-child(12) { top: 45%; left: 25%; transform: rotate(-20deg); }
+.petal:nth-child(13) { top: 20%; left: 25%; transform: rotate(-10deg); }
+.petal:nth-child(14) { top: 70%; left: 75%; transform: rotate(40deg); }
+.petal:nth-child(15) { top: 60%; left: 5%; transform: rotate(-45deg); } /* Added */
+.petal:nth-child(16) { top: 10%; left: 95%; transform: rotate(45deg); } /* Added */
